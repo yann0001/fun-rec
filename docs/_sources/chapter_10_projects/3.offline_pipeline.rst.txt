@@ -267,9 +267,9 @@ YoutubeDNN
        if isinstance(val, (list, tuple, np.ndarray)):
            if len(val) > 0 and isinstance(val[0], (list, tuple, np.ndarray)):
                # 处理嵌套列表（如 genres）
-               val = list(itertools.chain(*val))[:max_seq_len]
+               val = list(itertools.chain(*val))[-max_seq_len:]
            else:
-               val = list(val)[:max_seq_len]
+               val = list(val)[-max_seq_len:]
            # 左填充：新观看的在右边，符合时间顺序
            return [padding_value] * (max_seq_len - len(val)) + val
        else:

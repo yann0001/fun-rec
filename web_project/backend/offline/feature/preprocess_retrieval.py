@@ -128,10 +128,10 @@ def process_features(df_movies, df_ratings, df_users):
 def add_padding(val, padding_value, max_seq_len):
     """为序列添加填充以达到固定长度"""
     if isinstance(val, (list, tuple, np.ndarray)):
-        if len(val) > 0 and isinstance(val[0], (list, tuple, np.ndarray)):        
-            val = list(itertools.chain(*val))[:max_seq_len]
+        if len(val) > 0 and isinstance(val[0], (list, tuple, np.ndarray)):
+            val = list(itertools.chain(*val))[-max_seq_len:]
         else:
-            val = list(val)[:max_seq_len]
+            val = list(val)[-max_seq_len:]
         return [padding_value] * (max_seq_len - len(val)) + val
     else:
         return val
